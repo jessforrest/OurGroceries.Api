@@ -66,6 +66,29 @@ namespace OurGroceries.Api
             return shoppingTeamJson;
         }
 
+        public string UpdateCrossedOffItem(string listId, string teamId, string itemId, bool crossedOff)
+        {
+            var message = new OurGroceriesMessageUpdate();
+
+            message.command = "setItemCrossedOff";
+            message.listId = listId;
+            message.teamId = teamId;
+            message.itemId = itemId;
+            message.versionId = string.Empty;
+
+            var serializedMessage = JsonConvert.SerializeObject(message);
+
+            WebClient.Headers["Content-Type"] = "application/json; charset=UTF-8";
+            WebClient.Headers.Add("Accept", "application/json, text/javascript, */*");
+
+            var response = string.Empty;
+            var url = $"{_baseUrl}/your-lists/list/{listId}";
+
+            var result = WebClient.UploadString(url, serializedMessage);
+
+            return result;
+        }
+
         public string GetList(string listId, string teamId)
         {            
             var message = new OurGroceriesMessage();

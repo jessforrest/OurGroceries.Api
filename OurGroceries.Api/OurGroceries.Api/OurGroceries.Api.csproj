@@ -49,6 +49,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\OurGroceriesMessage.cs" />
+    <Compile Include="Entities\OurGroceriesMessageUpdate.cs" />
     <Compile Include="Entities\ShoppingList.cs" />
     <Compile Include="Entities\ShoppingTeam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

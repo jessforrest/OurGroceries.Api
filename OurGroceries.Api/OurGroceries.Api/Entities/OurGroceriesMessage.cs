@@ -1,5 +1,4 @@
-﻿
-namespace OurGroceries.Api.Entities
+﻿namespace OurGroceries.Api.Entities
 {
     public class OurGroceriesMessage
     {
