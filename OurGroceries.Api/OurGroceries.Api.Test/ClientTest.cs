@@ -57,7 +57,7 @@ namespace OurGroceries.Test
 
                     if (shoppingTeam == null || shoppingTeam.shoppingLists.Count == 0) Assert.Fail();
 
-                    actual = client.UpdateCrossedOffItem(listId: shoppingTeam.shoppingLists[0].id, teamId: shoppingTeam.teamId, itemId:"", crossedOff: true);
+                    actual = client.SetItemCrossedOff(listId: shoppingTeam.shoppingLists[0].id, teamId: shoppingTeam.teamId, itemId:"", crossedOff: true);
                 }
 
                 Assert.IsFalse(string.IsNullOrEmpty(actual));

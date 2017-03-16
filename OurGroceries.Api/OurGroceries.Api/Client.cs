@@ -66,7 +66,7 @@ namespace OurGroceries.Api
             return shoppingTeamJson;
         }
 
-        public string UpdateCrossedOffItem(string listId, string teamId, string itemId, bool crossedOff)
+        public string SetItemCrossedOff(string listId, string teamId, string itemId, bool crossedOff)
         {
             var message = new OurGroceriesMessageUpdate();
 
@@ -75,22 +75,15 @@ namespace OurGroceries.Api
             message.teamId = teamId;
             message.itemId = itemId;
             message.versionId = string.Empty;
+            message.crossedOff = crossedOff;
 
-            var serializedMessage = JsonConvert.SerializeObject(message);
-
-            WebClient.Headers["Content-Type"] = "application/json; charset=UTF-8";
-            WebClient.Headers.Add("Accept", "application/json, text/javascript, */*");
-
-            var response = string.Empty;
-            var url = $"{_baseUrl}/your-lists/list/{listId}";
-
-            var result = WebClient.UploadString(url, serializedMessage);
-
+            var result = PostMessage2OurGroceries(listId, message);
+            
             return result;
         }
 
         public string GetList(string listId, string teamId)
-        {            
+        {
             var message = new OurGroceriesMessage();
 
             message.command = "getList";
@@ -98,16 +91,22 @@ namespace OurGroceries.Api
             message.teamId = teamId;
             message.versionId = string.Empty;
 
+            var result = PostMessage2OurGroceries(listId, message);
+
+            return result;
+        }
+        
+        private string PostMessage2OurGroceries<T>(string listId, T message)
+        {
             var serializedMessage = JsonConvert.SerializeObject(message);
 
             WebClient.Headers["Content-Type"] = "application/json; charset=UTF-8";
             WebClient.Headers.Add("Accept", "application/json, text/javascript, */*");
-
-            var response = string.Empty;
+            
             var url = $"{_baseUrl}/your-lists/list/{listId}";
 
-            var result = WebClient.UploadString(url, serializedMessage);            
-            
+            var result = WebClient.UploadString(url, serializedMessage);
+
             return result;
         }
 

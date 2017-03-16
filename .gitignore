@@ -3,3 +3,8 @@
 ################################################################################
 
 /OurGroceries.Api/packages/Newtonsoft.Json.9.0.1
+/OurGroceries.Api/OurGroceries.Api.Test/bin
+/OurGroceries.Api/OurGroceries.Api.Test/obj
+/OurGroceries.Api/OurGroceries.Api/obj
+/OurGroceries.Api/OurGroceries.Api/bin
+*.suo
